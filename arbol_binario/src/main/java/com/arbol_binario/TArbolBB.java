@@ -1,3 +1,4 @@
+package com.arbol_binario;
 public class TArbolBB<T> implements IArbolBB<T> {
 
     private TElementoAB<T> raiz;
