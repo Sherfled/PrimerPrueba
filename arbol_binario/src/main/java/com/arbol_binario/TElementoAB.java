@@ -193,4 +193,39 @@ public class TElementoAB<T> implements IElementoAB<T> {
 		}
 		return res;
 	}
+
+	// ROTACIONES
+
+	/*
+	 * K1  		K2
+	* / \ 		/ \
+	 * A K2   K1   C
+	 * / \    / \
+	 * B C    A B
+	 */
+
+	public TElementoAB<T> rotacionRR(TElementoAB<T> k1) {
+		TElementoAB<T> k2 = k1.getHijoDer();
+		k1.setHijoDer(k2.getHijoIzq());
+		k2.setHijoIzq(k1);
+		return k1;
+	}
+
+	public TElementoAB<T> rotacionLL(TElementoAB<T> k2) {
+		TElementoAB<T> k1 = k2.getHijoIzq();
+		k2.setHijoIzq(k1.getHijoDer());
+		k1.setHijoDer(k2);
+		return k2;
+	}
+
+	public TElementoAB<T> rotacionLR(TElementoAB<T> k3) {
+		k3.setHijoIzq(rotacionRR(k3.getHijoIzq()));
+		return rotacionLL(k3);
+	}
+
+	public TElementoAB<T> rotacionRL(TElementoAB<T> k1) {
+		k1.setHijoDer(rotacionLL(k1.getHijoDer()));
+		return rotacionRR(k1);
+	}
+
 }
